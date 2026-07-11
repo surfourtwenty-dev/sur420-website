@@ -106,3 +106,12 @@ body {
     text-align: center;
     padding: 20px;
 }
+.hero-small {
+    padding: 50px 20px;
+}
+.about-list {
+    list-style: none;
+    padding: 0;
+    font-size: 20px;
+    line-height: 1.8;
+}
