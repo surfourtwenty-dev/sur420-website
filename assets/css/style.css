@@ -1,0 +1,108 @@
+/* Global */
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #f7f7f7;
+    color: #222;
+}
+
+/* Header */
+.header {
+    background: #111;
+    color: #fff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.nav a {
+    color: #fff;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #D62828, #F77F00, #FCCA46);
+    color: #fff;
+}
+
+.hero-logo {
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-size: 42px;
+    font-weight: 800;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background: #111;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Light Section */
+.section-light {
+    background: #fff;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.section-light h2 {
+    font-size: 32px;
+}
+
+.link-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #D62828;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+/* Gradient Section */
+.section-gradient {
+    background: linear-gradient(135deg, #FCCA46, #F77F00);
+    padding: 60px 20px;
+    text-align: center;
+    color: #111;
+}
+
+.link-button-dark {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+/* Footer */
+.footer {
+    background: #111;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
