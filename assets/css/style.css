@@ -16,9 +16,9 @@ body {
     align-items: center;
 }
 
-.header .logo {
-    font-size: 30px;
-    font-weight: 800;
+.header .logo img {
+    height: 25px;   /* adjust as needed */
+    width: auto;
 }
 
 .nav a {
