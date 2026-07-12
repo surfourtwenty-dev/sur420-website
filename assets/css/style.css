@@ -16,7 +16,7 @@ body {
     align-items: center;
 }
 
-.header .logo img {
+.header-logo {
     height: 40px;   /* adjust as needed */
     width: auto;
 }
