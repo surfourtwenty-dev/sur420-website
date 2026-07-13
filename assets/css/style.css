@@ -14,16 +14,30 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
 }
 
 .header .logo img {
-    height: 30px;   /* adjust as needed */
+    height: 58px;
     width: auto;
+    display: block;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
 .nav a {
     color: #fff;
-    margin-left: 20px;
+    margin-left: 0;
     text-decoration: none;
     font-weight: 500;
 }
@@ -189,4 +203,19 @@ body {
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 12px 16px;
+    }
+
+    .header .logo img {
+        height: 46px;
+    }
+
+    .nav {
+        gap: 10px;
+        font-size: 14px;
+    }
 }
