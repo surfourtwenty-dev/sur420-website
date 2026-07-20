@@ -138,21 +138,52 @@ body {
     border-radius: 6px;
 }
 
-/* Facebook Plugin */
+/* Social Plugins */
 .facebook-plugin-section {
     padding: 60px 20px 80px;
 }
 
-.facebook-plugin {
+.social-plugin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 28px;
+    align-items: start;
+}
+
+.social-plugin-card {
+    background: #fafafa;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.social-plugin-card h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 22px;
+    color: #111;
+}
+
+.facebook-plugin,
+.instagram-plugin {
     display: flex;
     justify-content: center;
-    margin-top: 24px;
 }
 
 .facebook-plugin iframe {
     max-width: 100%;
     border-radius: 12px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.instagram-plugin {
+    width: 100%;
+}
+
+.instagram-plugin blockquote {
+    width: 100% !important;
+    max-width: 100% !important;
 }
 
 /* Footer */
