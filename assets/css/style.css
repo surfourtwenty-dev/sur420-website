@@ -144,14 +144,18 @@ body {
 }
 
 .social-plugin-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 24px;
     margin-top: 28px;
     align-items: start;
 }
 
 .social-plugin-card {
+    flex: 1 1 320px;
+    max-width: 420px;
+    width: 100%;
     background: #fafafa;
     border-radius: 14px;
     padding: 20px;
@@ -184,6 +188,7 @@ body {
 .instagram-plugin blockquote {
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
 }
 
 /* Footer */
