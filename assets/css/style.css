@@ -138,6 +138,23 @@ body {
     border-radius: 6px;
 }
 
+/* Facebook Plugin */
+.facebook-plugin-section {
+    padding: 60px 20px 80px;
+}
+
+.facebook-plugin {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.facebook-plugin iframe {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
 /* Footer */
 .footer {
     background: #111;
@@ -175,7 +192,6 @@ body {
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-}
 .event-card h3 {
     margin-top: 0;
     font-size: 24px;
