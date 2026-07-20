@@ -6,6 +6,11 @@ body {
     color: #222;
 }
 
+p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
 /* Header */
 .header {
     position: sticky;
@@ -204,7 +209,7 @@ body {
 .about-list {
     list-style: none;
     padding: 0;
-    font-size: 20px;
+    font-size: 1.1rem;
     line-height: 1.8;
 }
 .event-banner {
