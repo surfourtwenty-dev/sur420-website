@@ -218,6 +218,20 @@ p {
     border-radius: 10px;
     margin-top: 20px;
 }
+
+.sold-out-video {
+    width: 100%;
+    max-width: 640px;
+    margin: 1rem auto 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.sold-out-video video {
+    display: block;
+    width: 100%;
+}
 .photo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
