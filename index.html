@@ -108,48 +108,14 @@
         <h2>Request a Song</h2>
         <p>Have a favourite song you would like to hear at a SUR420 event? Send us your request.</p>
 
-        <form class="contact-form" id="song-request-form" action="submit_song_request.php" method="post">
+        <form class="contact-form" action="mailto:contact@sur420.com.au" method="post" enctype="text/plain">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
             <input type="text" name="song" placeholder="Song Title" required>
             <input type="text" name="artist" placeholder="Artist or Original Performer">
             <textarea name="message" placeholder="Special request or dedication (optional)"></textarea>
-            <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
             <button type="submit">Submit Song Request</button>
-            <p id="song-request-status" role="status" aria-live="polite"></p>
         </form>
-        <script>
-            document.getElementById('song-request-form').addEventListener('submit', async function (event) {
-                event.preventDefault();
-
-                const form = event.currentTarget;
-                const submitButton = form.querySelector('button[type="submit"]');
-                const status = document.getElementById('song-request-status');
-
-                submitButton.disabled = true;
-                status.textContent = 'Sending your request...';
-
-                try {
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        body: new FormData(form),
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    const result = await response.json();
-
-                    if (!response.ok) {
-                        throw new Error(result.message || 'Unable to send your request.');
-                    }
-
-                    form.reset();
-                    status.textContent = result.message;
-                } catch (error) {
-                    status.textContent = error.message || 'Unable to send your request. Please try again.';
-                } finally {
-                    submitButton.disabled = false;
-                }
-            });
-        </script>
     </section>
 
     <!-- About Preview -->
