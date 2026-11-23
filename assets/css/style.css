@@ -313,6 +313,23 @@ p {
     cursor: pointer;
 }
 
+.contact-form button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.contact-form .honeypot {
+    position: absolute;
+    left: -9999px;
+}
+
+#song-request-status {
+    min-height: 1.5em;
+    margin: 12px 0 0;
+    color: #111;
+    font-weight: 600;
+}
+
 .social-links {
     display: flex;
     justify-content: center;
