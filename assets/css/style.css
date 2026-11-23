@@ -115,6 +115,31 @@ p {
     font-size: 32px;
 }
 
+.recordings-table-wrap {
+    max-width: 800px;
+    margin: 24px auto 0;
+    overflow-x: auto;
+}
+
+.recordings-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.recordings-table th,
+.recordings-table td {
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.recordings-table th {
+    background: #111;
+    color: #fff;
+}
+
 .link-button {
     display: inline-block;
     margin-top: 20px;
