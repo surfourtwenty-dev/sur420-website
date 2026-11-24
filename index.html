@@ -89,19 +89,33 @@
         </div>
     </section>
 
-    <!-- Song Request -->
+    <!-- Voice Note Upload -->
     <section class="section-gradient song-request">
-        <h2>Request a Song</h2>
-        <p>Have a favourite song you would like to hear at a SUR420 event? Send us your request.</p>
+        <h2>Want to Showcase Your Singing Talent with SUR420?</h2>
+        <p>Upload your singing voice note for our team to review. Audio files are limited to 10 MB and are stored privately in Google Drive.</p>
+        <div class="voice-note-upload">
+            <p id="voice-note-upload-setup" role="status">
+                Voice note uploads are not configured yet. Please check back soon.
+            </p>
+            <iframe
+                id="voice-note-upload-frame"
+                class="voice-note-upload-frame"
+                title="Upload your singing voice note"
+                loading="lazy"
+                hidden>
+            </iframe>
+        </div>
+        <script>
+            const voiceNoteUploadUrl = 'https://script.google.com/macros/s/AKfycbwqMT0x_gpA4hWYfA6-UM2T8KAR0o-ROi0Gf7AtR1xDr1ICnbg1v8iaMP0BWMeZg6Wn/exec';
+            const uploadFrame = document.getElementById('voice-note-upload-frame');
+            const uploadSetupMessage = document.getElementById('voice-note-upload-setup');
 
-        <form class="contact-form" action="mailto:contact@sur420.com.au?subject=Song%20Request" method="post" enctype="text/plain">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <input type="text" name="song" placeholder="Song Title" required>
-            <input type="text" name="artist" placeholder="Artist or Original Performer">
-            <textarea name="message" placeholder="Special request or dedication (optional)"></textarea>
-            <button type="submit">Submit Song Request</button>
-        </form>
+            if (voiceNoteUploadUrl.startsWith('https://script.google.com/macros/s/')) {
+                uploadFrame.src = voiceNoteUploadUrl;
+                uploadFrame.hidden = false;
+                uploadSetupMessage.hidden = true;
+            }
+        </script>
     </section>
 
     <!-- About Preview -->

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        margin: 0;
+        padding: 24px;
+        color: #222;
+        font-family: Arial, sans-serif;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      label {
+        font-weight: 600;
+      }
+
+      input,
+      button {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font: inherit;
+      }
+
+      button {
+        border: 0;
+        background: #111;
+        color: #fff;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      button:disabled {
+        cursor: wait;
+        opacity: 0.65;
+      }
+
+      .honeypot {
+        position: absolute;
+        left: -9999px;
+      }
+
+      #status {
+        min-height: 1.5em;
+        margin: 4px 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="voice-note-form">
+      <label for="name">Your name</label>
+      <input id="name" name="name" type="text" maxlength="100" required>
+
+      <label for="email">Email address</label>
+      <input id="email" name="email" type="email" maxlength="254" required>
+
+      <label for="voiceNote">Choose an audio file (MP3, WAV, M4A, or OGG; max 10 MB)</label>
+      <input id="voiceNote" name="voiceNote" type="file" accept=".mp3,.wav,.m4a,.ogg,audio/mpeg,audio/wav,audio/mp4,audio/ogg" required>
+
+      <input class="honeypot" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <button id="submit-button" type="submit">Upload Voice Note</button>
+      <p id="status" role="status" aria-live="polite"></p>
+    </form>
+
+    <script>
+      const form = document.getElementById('voice-note-form');
+      const submitButton = document.getElementById('submit-button');
+      const status = document.getElementById('status');
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        submitButton.disabled = true;
+        status.textContent = 'Uploading your voice note...';
+
+        google.script.run
+          .withSuccessHandler(function (message) {
+            form.reset();
+            status.textContent = message;
+            submitButton.disabled = false;
+          })
+          .withFailureHandler(function (error) {
+            status.textContent = error.message || 'The upload failed. Please try again.';
+            submitButton.disabled = false;
+          })
+          .uploadVoiceNote(form);
+      });
+    </script>
+  </body>
+</html>
