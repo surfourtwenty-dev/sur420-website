@@ -2,9 +2,7 @@ const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
 const UPLOAD_ROOT_FOLDER_NAME = 'SUR420 Voice Note Submissions';
 const AUDIO_TYPES = {
   mp3: 'audio/mpeg',
-  wav: 'audio/wav',
-  m4a: 'audio/mp4',
-  ogg: 'audio/ogg'
+  wav: 'audio/wav'
 };
 
 function doGet() {
@@ -20,6 +18,7 @@ function uploadVoiceNote(form) {
 
   const name = String(form.name || '').trim();
   const email = String(form.email || '').trim();
+  const phone = String(form.phone || '').trim();
   const file = form.voiceNote;
 
   if (!name || name.length > 100) {
@@ -27,6 +26,10 @@ function uploadVoiceNote(form) {
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
     throw new Error('Please enter a valid email address.');
+  }
+  if (phone && (phone.length > 25 || !/^[+()\d.\-\s]+$/.test(phone)
+      || phone.replace(/\D/g, '').length < 7 || phone.replace(/\D/g, '').length > 15)) {
+    throw new Error('Please enter a valid contact number, or leave it blank.');
   }
   if (!file || typeof file.getName !== 'function' || !file.getName()) {
     throw new Error('Please choose an audio file to upload.');
@@ -36,7 +39,7 @@ function uploadVoiceNote(form) {
   const extension = originalName.split('.').pop().toLowerCase();
   const contentType = AUDIO_TYPES[extension];
   if (!contentType) {
-    throw new Error('Please upload an MP3, WAV, M4A, or OGG audio file.');
+    throw new Error('Please upload an MP3 or WAV audio file.');
   }
 
   const bytes = file.getBytes();
@@ -51,7 +54,10 @@ function uploadVoiceNote(form) {
   const safeFileName = sanitizeFileName_(originalName);
   const audioBlob = Utilities.newBlob(bytes, contentType, safeFileName);
   folder.createFile(audioBlob);
-  folder.setDescription('Submitted by: ' + name + '\nEmail: ' + email);
+  folder.setDescription(
+    'Submitted by: ' + name + '\nEmail: ' + email
+      + '\nPhone: ' + (phone || 'Not provided')
+  );
 
   return 'Thank you. Your voice note has been received for review.';
 }

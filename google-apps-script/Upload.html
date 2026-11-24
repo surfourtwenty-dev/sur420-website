@@ -63,8 +63,11 @@
       <label for="email">Email address</label>
       <input id="email" name="email" type="email" maxlength="254" required>
 
-      <label for="voiceNote">Choose an audio file (MP3, WAV, M4A, or OGG; max 10 MB)</label>
-      <input id="voiceNote" name="voiceNote" type="file" accept=".mp3,.wav,.m4a,.ogg,audio/mpeg,audio/wav,audio/mp4,audio/ogg" required>
+      <label for="phone">Contact number (optional)</label>
+      <input id="phone" name="phone" type="tel" maxlength="25" autocomplete="tel" placeholder="+61 4xx xxx xxx">
+
+      <label for="voiceNote">Choose an audio file (MP3 or WAV; max 10 MB)</label>
+      <input id="voiceNote" name="voiceNote" type="file" accept=".mp3,.wav,audio/mpeg,audio/wav" required>
 
       <input class="honeypot" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
 
