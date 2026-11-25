@@ -28,7 +28,10 @@ function uploadVoiceNote(form) {
   if (!name || name.length > 100) {
     throw new Error('Please enter your name (up to 100 characters).');
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
+  if (!email && !phone) {
+    throw new Error('Please provide an email address or contact number.');
+  }
+  if (email && (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254)) {
     throw new Error('Please enter a valid email address.');
   }
   if (phone && (phone.length > 25 || !/^[+()\d.\-\s]+$/.test(phone)
@@ -59,7 +62,7 @@ function uploadVoiceNote(form) {
   const audioBlob = Utilities.newBlob(bytes, contentType, safeFileName);
   const savedFile = folder.createFile(audioBlob);
   folder.setDescription(
-    'Submitted by: ' + name + '\nEmail: ' + email
+    'Submitted by: ' + name + '\nEmail: ' + (email || 'Not provided')
       + '\nPhone: ' + (phone || 'Not provided')
   );
 
@@ -67,7 +70,7 @@ function uploadVoiceNote(form) {
     'A new SUR420 voice note has been uploaded.',
     '',
     'Name: ' + name,
-    'Email: ' + email,
+    'Email: ' + (email || 'Not provided'),
     'Contact number: ' + (phone || 'Not provided'),
     'File: ' + savedFile.getName(),
     'Drive folder: ' + folder.getUrl()
