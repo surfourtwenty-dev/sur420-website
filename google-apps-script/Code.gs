@@ -1,5 +1,6 @@
 const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
 const UPLOAD_ROOT_FOLDER_NAME = 'SUR420 Voice Note Submissions';
+const UPLOAD_NOTIFICATION_EMAIL = 'contact@sur420.com.au';
 const AUDIO_TYPES = {
   mp3: 'audio/mpeg',
   wav: 'audio/wav'
@@ -13,7 +14,10 @@ function doGet() {
 
 function uploadVoiceNote(form) {
   if (form.website) {
-    return 'Thank you. Your voice note has been received for review.';
+    return {
+      message: 'Thank you. Your voice note has been received for review.',
+      notificationSent: true
+    };
   }
 
   const name = String(form.name || '').trim();
@@ -53,13 +57,38 @@ function uploadVoiceNote(form) {
   );
   const safeFileName = sanitizeFileName_(originalName);
   const audioBlob = Utilities.newBlob(bytes, contentType, safeFileName);
-  folder.createFile(audioBlob);
+  const savedFile = folder.createFile(audioBlob);
   folder.setDescription(
     'Submitted by: ' + name + '\nEmail: ' + email
       + '\nPhone: ' + (phone || 'Not provided')
   );
 
-  return 'Thank you. Your voice note has been received for review.';
+  const emailBody = [
+    'A new SUR420 voice note has been uploaded.',
+    '',
+    'Name: ' + name,
+    'Email: ' + email,
+    'Contact number: ' + (phone || 'Not provided'),
+    'File: ' + savedFile.getName(),
+    'Drive folder: ' + folder.getUrl()
+  ].join('\n');
+
+  let notificationSent = true;
+  try {
+    MailApp.sendEmail(
+      UPLOAD_NOTIFICATION_EMAIL,
+      'New SUR420 voice note upload',
+      emailBody
+    );
+  } catch (error) {
+    console.error('Could not send the voice note notification email.', error);
+    notificationSent = false;
+  }
+
+  return {
+    message: 'Your voice note has been uploaded successfully.',
+    notificationSent: notificationSent
+  };
 }
 
 function getUploadRootFolder_() {

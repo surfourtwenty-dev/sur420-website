@@ -86,9 +86,11 @@
         status.textContent = 'Uploading your voice note...';
 
         google.script.run
-          .withSuccessHandler(function (message) {
+          .withSuccessHandler(function (result) {
             form.reset();
-            status.textContent = message;
+            status.textContent = result.notificationSent
+              ? result.message
+              : result.message + ' The upload was saved, but the notification email could not be sent. Please contact SUR420 directly.';
             submitButton.disabled = false;
           })
           .withFailureHandler(function (error) {
